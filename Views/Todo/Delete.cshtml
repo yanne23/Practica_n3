@@ -1,0 +1,30 @@
+@model Practica_n3.DTO.TodoDTO
+
+@{
+    ViewData["Title"] = "Eliminar Post";
+}
+
+<h1>Eliminar Post</h1>
+
+
+
+<form asp-action="DeleteConfirmed" asp-route-id="@Model.id" method="post">
+
+    
+    <dt class="col-sm-2">Id:</dt>
+        <dd class="col-sm-10">@Model.id</dd>
+
+        <dt class="col-sm-2">userId:</dt>
+        <dd class="col-sm-10">@Model.userId</dd>
+
+        <dt class="col-sm-2">title:</dt>
+        <dd class="col-sm-10">@Model.title</dd>
+
+        <dt class="col-sm-2">body:</dt>
+        <dd class="col-sm-10">@Model.body</dd>
+
+
+ 
+    <input type="submit" value="Eliminar" class="btn btn-danger" />
+    <a asp-action="Index">Cancelar</a>
+</form>

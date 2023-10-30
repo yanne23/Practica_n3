@@ -23,83 +23,90 @@ namespace Practica_n3.Controllers.UI
             _jsonplaceholder = jsonplaceholder;
         }
 
-        public async Task<IActionResult> Index()
-        {
-
-            List<TodoDTO> todos =await _jsonplaceholder.GetAll();
-
-            //List<TodoDTO> filtro = todos.Where(todo => todo.userId > 6).ToList();
-
-            //List<TodoDTO> filtro = todos.Where(todo => todo.title.Contains("Tarea")).ToList();
-
-            List<TodoDTO> filtro = todos
-            .Where(todo => todo.userId == 1)
-            .OrderBy(todo => todo.title)
-            .ThenByDescending(todo => todo.body)
-            .ToList();
-
-            return View(todos);
-        }
-
-        public async Task<IActionResult> Details(int id)
-        {
-            TodoDTO todo = await _jsonplaceholder.GetTodoById(id);
-
-            if (todo == null)
+            public async Task<IActionResult> Index()
             {
-                return NotFound(); // Puedes personalizar esta vista de error.
+
+                List<TodoDTO> todos =await _jsonplaceholder.GetAll();
+
+                //List<TodoDTO> filtro = todos.Where(todo => todo.userId > 6).ToList();
+
+                //List<TodoDTO> filtro = todos.Where(todo => todo.title.Contains("Tarea")).ToList();
+
+                List<TodoDTO> filtro = todos
+                .Where(todo => todo.userId == 1)
+                .OrderBy(todo => todo.title)
+                .ThenByDescending(todo => todo.body)
+                .ToList();
+
+                return View(todos);
             }
 
-            return View(todo);
-        }
-
-                public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(TodoDTO todo)
-        {
-            if (ModelState.IsValid)
+            public async Task<IActionResult> Details(int id)
             {
-                // Llama a tu servicio de integración o lógica de negocio para crear el post.
-                await _jsonplaceholder.CreateTodo(todo);
-                return RedirectToAction("Index");
+                TodoDTO todo = await _jsonplaceholder.GetTodoById(id);
+
+                if (todo == null)
+                {
+                    return NotFound(); // Puedes personalizar esta vista de error.
+                }
+
+                return View(todo);
             }
 
-            return View(todo);
-        }
+                
 
-        public async Task<IActionResult> Edit(int id)
-        {
-            TodoDTO todo = await _jsonplaceholder.GetTodoById(id);
-
-            if (todo == null)
+            public IActionResult Create()
             {
-                return NotFound(); // Puedes personalizar esta vista de error.
+                return View();
             }
 
-            return View(todo);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(int id, TodoDTO todo)
-        {
-            if (id != todo.id)
+            [HttpPost]
+            public async Task<IActionResult> Create(TodoDTO todo)
             {
-                return NotFound();
+                if (ModelState.IsValid)
+                {
+                    // Llama a tu servicio de integración o lógica de negocio para crear el post.
+                    await _jsonplaceholder.CreateTodo(todo);
+
+                    // Redirige al usuario de nuevo a la lista de tareas (Index) después de la creación.
+                    return RedirectToAction("Index");
+                }
+
+                return View(todo);
             }
 
-            if (ModelState.IsValid)
+
+            [HttpGet]
+            public async Task<IActionResult> Edit(int id)
             {
-                // Llama a tu servicio de integración o lógica de negocio para actualizar el post.
-                await _jsonplaceholder.UpdateTodo(todo);
-                return RedirectToAction("Index");
+                TodoDTO todo = await _jsonplaceholder.GetTodoById(id);
+
+                if (todo == null)
+                {
+                    return NotFound(); // Puedes personalizar esta vista de error.
+                }
+
+                return View(todo);
             }
 
-            return View(todo);
-        }
+            [HttpPost]
+            public async Task<IActionResult> Edit([Bind("id, userId, title, body")] TodoDTO todo)
+            {
+                 // Agrega una pausa para depurar
+                Debugger.Break();
+                
+                if (ModelState.IsValid)
+                {
+                    // Llama a tu servicio de integración o lógica de negocio para actualizar el post.
+                    await _jsonplaceholder.UpdateTodo(todo);
+                    return RedirectToAction("Index");
+                }
+
+                return View(todo);
+            }
+
+
+
 
         public async Task<IActionResult> Delete(int id)
             {
@@ -117,10 +124,14 @@ namespace Practica_n3.Controllers.UI
             [ValidateAntiForgeryToken]
             public async Task<IActionResult> DeleteConfirmed(int id)
             {
-                // Llama a tu servicio de integración o lógica de negocio para eliminar el post.
+                // Llama a tu servicio de integración o lógica de negocio para eliminar el post con el ID especificado.
                 await _jsonplaceholder.DeleteTodo(id);
+
+                // Redirige al usuario de nuevo a la lista de tareas (Index) después de la eliminación.
                 return RedirectToAction("Index");
             }
+
+            
 
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

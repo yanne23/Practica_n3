@@ -40,6 +40,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/yanne/Documents/GitHub/Practica_n3/Views/Todo/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9kb1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yanne/Documents/GitHub/Practica_n3/Views/Todo/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9kb1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yanne/Documents/GitHub/Practica_n3/Views/Todo/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9kb1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yanne/Documents/GitHub/Practica_n3/Views/Todo/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9kb1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/yanne/Documents/GitHub/Practica_n3/Views/Todo/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9kb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
