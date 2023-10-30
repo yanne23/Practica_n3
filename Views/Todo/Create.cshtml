@@ -1,0 +1,28 @@
+@model Practica_n3.DTO.TodoDTO
+
+@{
+    ViewData["Title"] = "Crear Nuevo Post";
+}
+
+<h1>Crear Nuevo Post</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="userId">UserId:</label>
+        <input asp-for="userId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="title">Título:</label>
+        <input asp-for="title" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="body">Cuerpo:</label>
+        <textarea asp-for="body" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Crear</button>
+</form>
+
+<a asp-action="Index">Cancelar</a>

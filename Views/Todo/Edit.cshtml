@@ -1,0 +1,30 @@
+@model Practica_n3.DTO.TodoDTO
+
+@{
+    ViewData["Title"] = "Editar Post";
+}
+
+<h1>Editar Post</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="id" />
+
+    <div class="form-group">
+        <label asp-for="userId">UserId:</label>
+        <input asp-for="userId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="title">Título:</label>
+        <input asp-for="title" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="body">Cuerpo:</label>
+        <textarea asp-for="body" class="form-control"></textarea>
+    </div>
+
+    <button  type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+<a asp-action="Index">Cancelar</a>
