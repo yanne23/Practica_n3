@@ -1,0 +1,2 @@
+GET  http://localhost:5264/api/posts/1
+Accept: application/json
