@@ -41,6 +41,88 @@ namespace Practica_n3.Controllers.UI
             return View(todos);
         }
 
+        public async Task<IActionResult> Details(int id)
+        {
+            TodoDTO todo = await _jsonplaceholder.GetTodoById(id);
+
+            if (todo == null)
+            {
+                return NotFound(); // Puedes personalizar esta vista de error.
+            }
+
+            return View(todo);
+        }
+
+                public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(TodoDTO todo)
+        {
+            if (ModelState.IsValid)
+            {
+                // Llama a tu servicio de integración o lógica de negocio para crear el post.
+                await _jsonplaceholder.CreateTodo(todo);
+                return RedirectToAction("Index");
+            }
+
+            return View(todo);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            TodoDTO todo = await _jsonplaceholder.GetTodoById(id);
+
+            if (todo == null)
+            {
+                return NotFound(); // Puedes personalizar esta vista de error.
+            }
+
+            return View(todo);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, TodoDTO todo)
+        {
+            if (id != todo.id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                // Llama a tu servicio de integración o lógica de negocio para actualizar el post.
+                await _jsonplaceholder.UpdateTodo(todo);
+                return RedirectToAction("Index");
+            }
+
+            return View(todo);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+            {
+                TodoDTO todo = await _jsonplaceholder.GetTodoById(id);
+
+                if (todo == null)
+                {
+                    return NotFound(); // Puedes personalizar esta vista de error.
+                }
+
+                return View(todo);
+            }
+
+            [HttpPost, ActionName("Delete")]
+            [ValidateAntiForgeryToken]
+            public async Task<IActionResult> DeleteConfirmed(int id)
+            {
+                // Llama a tu servicio de integración o lógica de negocio para eliminar el post.
+                await _jsonplaceholder.DeleteTodo(id);
+                return RedirectToAction("Index");
+            }
+
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
